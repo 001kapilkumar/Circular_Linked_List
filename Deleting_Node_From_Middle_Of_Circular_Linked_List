@@ -1,0 +1,110 @@
+public class Deleting_Node_From_Middle_Of_Circular_Linked_List {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    int size = 0 ;
+    public void add_Element(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+        size++ ;
+    }
+    public void element_deletion_from_Middle(){
+        int mid = (size % 2 == 0) ? (size/2) : ((size+1)/2) ;
+       // System.out.println("Mid value be " + mid);
+
+        if(head == null){
+            System.out.println("Linked list is empty");
+        }
+        else {
+            Node current = head ;
+            if (head == tail) {
+                head = null;
+                tail = null;
+            }
+            else if(current.next == tail){
+                tail.next = null ;
+                head = null ;
+                 head = tail  ;
+
+            }
+            else {
+                 current = head;
+                Node temp = head ;
+                while (mid  != 1) {
+                     temp =  current ;
+                    current = current.next;
+                    mid--;
+                }
+               // System.out.println("Element value before middle one be " + temp.data);
+                //System.out.println("Middle element of Linked List be " + current.data);
+                temp.next = current.next ;
+                //current = null;
+
+            }
+        }
+
+
+      //  System.out.println("size be " + size );
+        size-- ;
+      //  System.out.println("size after decreasing be " + size ) ;
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List be empty");
+        }
+        else if (head == tail){
+            System.out.println(head.data);
+        }
+
+        else {
+
+                do {
+                    System.out.println(current.data);
+                    current = current.next;
+                }
+                while (current != head);
+            }
+
+    }
+    public static void main(String [] args){
+        Deleting_Node_From_Middle_Of_Circular_Linked_List list = new Deleting_Node_From_Middle_Of_Circular_Linked_List() ;
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(40);
+        list.add_Element(50);
+        list.add_Element(60);
+
+
+
+        System.out.println("Original elements of Linked List be ") ;
+        list.element_Display();
+        int i = 1 ;
+            while(list.head != null) {
+                list.element_deletion_from_Middle();
+                System.out.println("Elements of Linked List after " + i + " deletion from middle one be ");
+                list.element_Display();
+                i++ ;
+            }
+
+
+
+
+    }
+
+}
