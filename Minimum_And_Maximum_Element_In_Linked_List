@@ -1,0 +1,75 @@
+public class Minimum_And_Maximum_Element_In_Linked_List {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+          head = newNode ;
+          tail = newNode ;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+    }
+    public void Minimum_And_Maximum_Element(){
+        Node current = head ;
+        int minimum = head.data ;
+        int maximum = head.data ;
+        if(head == null){
+            System.out.println("Linked lIst is empty");
+        }
+
+        else{
+
+            do{
+                if(minimum>current.data){
+                    minimum = current.data ;
+                }
+                else if(maximum <current.data){
+                    maximum = current.data ;
+                }
+                current = current.next ;
+            }
+            while(current != head) ;
+        }
+        System.out.println("Maximum element of Linked List be "+ maximum);
+        System.out.println("Minimum element of Linked List be " + minimum) ;
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List is empty");
+        }
+        else{
+            do{
+                System.out.println(current.data);
+                current = current.next ;
+            }
+            while(current != head);
+        }
+    }
+    public static void main(String [] args){
+        Minimum_And_Maximum_Element_In_Linked_List list = new Minimum_And_Maximum_Element_In_Linked_List();
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(1000);
+        list.add_Element(89);
+        list.add_Element(2);
+        list.add_Element(88);
+        System.out.println("Elements Of Linked List be ") ;
+        list.element_Display() ;
+        list.Minimum_And_Maximum_Element() ;
+
+
+    }
+}
