@@ -1,0 +1,46 @@
+public class Circular_Linked_List_Creation {
+    static class Node{
+        int data ;
+        Node next;
+        Node(int d ){
+            data = d ;
+          //  next = null ;
+        }
+    }
+    public Node head = null;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("linked List is empty");
+        }
+        do{
+            System.out.println(current.data);
+            current = current.next ;
+
+        }
+        while(current != head);
+    }
+    public static void main(String [] args){
+        Circular_Linked_List_Creation list = new Circular_Linked_List_Creation();
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(40);
+        System.out.println("Element of circular Linked List be ");
+        list.element_Display();
+
+    }
+}
