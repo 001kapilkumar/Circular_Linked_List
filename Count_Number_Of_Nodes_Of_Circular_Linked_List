@@ -1,0 +1,76 @@
+public class Count_Number_Of_Nodes_Of_Circular_Linked_List {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+
+    }
+    public void element_Display(){
+        Node current = head ;
+
+        if(head == null){
+            System.out.println("Linked List is empty");
+        }
+
+        else {
+
+            do {
+                System.out.println(current.data);
+                current = current.next;
+
+            } while (current != head);
+
+
+        }
+    }
+    public int count_Element(){
+        int length = 0 ;
+        Node current = head ;
+        if(head == null){
+           // System.out.println("Linked List be empty");
+            return 0 ;
+           // break ;
+        }
+        else {
+            do {
+                //System.out.println(current.data);
+                current = current.next;
+                length++;
+            } while (current != head);
+
+
+        }
+        return length;
+
+    }
+
+    public static void main(String [] args){
+        Count_Number_Of_Nodes_Of_Circular_Linked_List list = new Count_Number_Of_Nodes_Of_Circular_Linked_List() ;
+        list.add_Element(1);
+        list.add_Element(2);
+        list.add_Element(3);
+        list.add_Element(4);
+        System.out.println("Elements of Linked List be ");
+        list.element_Display() ;
+        System.out.println("Number of elements in Linked List be ");
+        System.out.println(list.count_Element()) ;
+
+
+    }
+}
