@@ -1,0 +1,65 @@
+public class Reverse_Order_Of_Elements_Of_Circular_Linked_List {
+static class Node{
+    int data ;
+    Node next ;
+    Node(int d ){
+        data  = d ;
+    }
+
+        }
+        public Node head = null ;
+        public Node tail = null ;
+        public void add_Element(int data){
+            Node newNode = new Node(data);
+            if(head == null){
+                head = newNode ;
+                tail = newNode ;
+            }
+            else{
+                tail.next = newNode ;
+                tail = newNode ;
+                tail.next = head ;
+            }
+        }
+        public void element_in_Reverse_Order(Node current){
+          //  Node current = head ;
+            if(head == null){
+                System.out.println("Linked List is empty");
+            }
+            else {
+                if(current.next == head){
+                    System.out.println(current.data);
+                    return ;
+                }
+                element_in_Reverse_Order(current.next);
+                System.out.println(current.data);
+
+            }
+        }
+        public void element_Display(){
+            Node current = head ;
+            if(head == null){
+                System.out.println("Linked lIst be empty");
+            }
+            else{
+                do{
+                    System.out.println(current.data);
+                    current  = current.next ;
+                }
+                while(current != head );
+            }
+        }
+        public static void main(String [] args){
+            Reverse_Order_Of_Elements_Of_Circular_Linked_List list = new Reverse_Order_Of_Elements_Of_Circular_Linked_List();
+            list.add_Element(1);
+            list.add_Element(89);
+            list.add_Element(100);
+            list.add_Element(299);
+            list.add_Element(890);
+            System.out.println("Original elements of linked list be ");
+            list.element_Display();
+            System.out.println("Elements of Linked List in reverse order") ;
+            list.element_in_Reverse_Order(list.head);
+
+        }
+}
