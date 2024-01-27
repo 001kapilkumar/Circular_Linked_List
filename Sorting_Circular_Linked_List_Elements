@@ -1,0 +1,74 @@
+public class Sorting_Circular_Linked_List_Elements {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail  = newNode ;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+    }
+    public void Sorting(){
+        Node current = head ;
+        do{
+           Node temp = current.next ;
+           while(temp != head) {
+               if (current.data > temp.data) {
+                   int current_data = current.data;
+                   Node next_Of_Current = current.next;
+                   Node next_Of_temp = temp.next;
+
+                   current.data = temp.data;
+                  // current.next = next_Of_Current;
+                   temp.data = current_data;
+                  // temp.next = next_Of_temp;
+
+               }
+               temp = temp.next ;
+           }
+
+           current = current.next ;
+        }
+        while(current != tail);
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List be empty") ;
+        }
+        else{
+            do{
+                System.out.println(current.data);
+                current = current.next ;
+            }
+            while(current != head);
+        }
+    }
+    public static void main(String [] args){
+        Sorting_Circular_Linked_List_Elements list = new Sorting_Circular_Linked_List_Elements() ;
+        list.add_Element(50);
+        list.add_Element(40);
+        list.add_Element(40);
+        list.add_Element(20);
+        list.add_Element(10);
+        System.out.println("Original elements of Linked list be ") ;
+        list.element_Display();
+        System.out.println("Linked List elements after sorting");
+        list.Sorting();
+        list.element_Display();
+
+    }
+
+}
