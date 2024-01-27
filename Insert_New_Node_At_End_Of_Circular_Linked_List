@@ -1,0 +1,63 @@
+public class Insert_New_Node_At_End_Of_Circular_Linked_List {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_element_at_End(int data){
+        Node newNode = new Node (data) ;
+        if (head == null){
+            head = newNode ;
+            tail = newNode ;
+
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next =  head ;
+        }
+    }
+    public void display_Element(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List is empty");
+        }
+        else{
+            if(head == tail){
+                System.out.println(head.data);
+
+
+            }
+            else {
+                do {
+                    System.out.println(current.data);
+                    current = current.next;
+                }
+                while (current != head);
+            }
+        }
+    }
+    public static void main(String [] args){
+        Insert_New_Node_At_End_Of_Circular_Linked_List list = new Insert_New_Node_At_End_Of_Circular_Linked_List();
+        list.add_element_at_End(12);
+        System.out.println("Insertion at the end of Linked List");
+        list.display_Element();
+        list.add_element_at_End(15);
+        System.out.println("Insertion at the end of Linked List");
+        list.display_Element();
+        list.add_element_at_End(16);
+        System.out.println("Insertion at the end of Linked List");
+        list.display_Element();
+        list.add_element_at_End(20);
+        System.out.println("Insertion at the end of Linked List");
+        list.display_Element();
+        list.add_element_at_End(30);
+        System.out.println("Insertion at the end of Linked List");
+        list.display_Element();
+
+    }
+}
