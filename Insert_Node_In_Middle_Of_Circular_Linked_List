@@ -1,0 +1,94 @@
+public class Insert_Node_In_Middle_Of_Circular_Linked_List {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d ){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    int size = 0 ;
+    public void node_Insertion(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+        size++ ;
+    }
+    public void node_insertion_in_Middle(int data){
+        Node newNode = new Node(data) ;
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+        }
+        else if(head == tail){
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = newNode ;
+        }
+        else{
+            Node current = head ;
+            int mid = (size%2 == 0) ? (size/2) : ((size+1)/2) ;
+           // System.out.println("Mid value be "+ mid) ;
+            Node temp = null ;
+            while(mid != 0){
+                 temp = current ;
+                current = current.next;
+               mid--;
+
+            }
+           // System.out.println("Element before middle one be  " + temp.data);
+           // System.out.println("Mid element be " + current.data);
+            temp.next = newNode ;
+            newNode.next = current ;
+
+
+        }
+        size++ ;
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List be empty ");
+
+        }
+        else{
+
+            do{
+                System.out.println(current.data);
+                current = current.next ;
+
+            }
+            while(current != head);
+        }
+    }
+    public static void main(String [] args){
+        Insert_Node_In_Middle_Of_Circular_Linked_List list = new Insert_Node_In_Middle_Of_Circular_Linked_List();
+        list.node_Insertion(20);
+        list.node_Insertion(30);
+        list.node_Insertion(40);
+        list.node_Insertion(50);
+        System.out.println("Original elements of Linked list be ");
+        list.element_Display();
+        System.out.println("Linked List after insertion at middle ");
+        list.node_insertion_in_Middle(3);
+        list.element_Display();
+        System.out.println("Linked List after insertion at middle ");
+        list.node_insertion_in_Middle(4);
+        list.element_Display();
+        System.out.println("Linked List after insertion at middle ");
+        list.node_insertion_in_Middle(5);
+        list.element_Display();
+        System.out.println("Linked List after insertion at middle ");
+        list.node_insertion_in_Middle(6);
+        list.element_Display();
+
+    }
+}
