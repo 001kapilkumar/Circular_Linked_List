@@ -1,0 +1,76 @@
+public class Search_Element_In_Circular_Linked_List {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d){
+            data = d ;
+
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode;
+        }
+        else{
+            tail.next = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+
+        }
+
+    }
+    public void search_Element(int  d){
+       // Node search = d ;
+        Node index =  head ;
+        int length = 0 ;
+        int digit = 0 ;
+        do{
+            if(d == index.data){
+                System.out.println(d +" present at index "+ length);
+                digit = 1 ;
+
+            }
+            length++ ;
+            index = index.next ;
+
+        }
+        while(index != head);
+        if(digit == 0){
+            System.out.println("Element "+ d +" does not present in Linked list ");
+        }
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null){
+            System.out.println("Linked List be empty");
+        }
+        else{
+            do{
+                System.out.println(current.data);
+                current = current.next ;
+
+            }
+            while(current != head);
+        }
+    }
+    public static void main(String[] args){
+        Search_Element_In_Circular_Linked_List list = new Search_Element_In_Circular_Linked_List() ;
+        list.add_Element(10);
+        list.add_Element(20);
+        list.add_Element(30);
+        list.add_Element(40);
+        System.out.println("Linked List element be ");
+        list.element_Display();
+
+        list.search_Element(30);
+
+        list.search_Element(90);
+
+
+    }
+}
