@@ -1,0 +1,67 @@
+public class Insert_NewNode_At_Begining {
+    static class Node{
+        int data ;
+        Node next ;
+        Node(int d){
+            data = d ;
+        }
+    }
+    public Node head = null ;
+    public Node tail = null ;
+    public void add_Element_At_Begining(int data){
+        Node newNode = new Node (data);
+        if(head == null){
+            head = newNode ;
+            tail = newNode ;
+            tail.next = head ;
+        }
+        else if(head == tail){
+            tail.next = newNode ;
+            head = newNode ;
+            head.next = tail ;
+
+        }
+        else{
+            Node temp = head ;
+            tail.next = newNode ;
+            head = newNode ;
+            head.next = temp ;
+
+        }
+
+    }
+    public void element_Display(){
+        Node current = head ;
+        if(head == null ){
+            System.out.println("Linked List be empty");
+        }
+        else{
+            do{
+                System.out.println(current.data);
+                current = current.next ;
+            }
+            while(current != head);
+        }
+    }
+    public static void main(String [] args){
+        Insert_NewNode_At_Begining list = new Insert_NewNode_At_Begining();
+        list.add_Element_At_Begining(10);
+        System.out.println("Elements after insertion at begining ");
+        list.element_Display();
+        list.add_Element_At_Begining(20);
+        System.out.println("Elements after insertion at begining ");
+        list.element_Display();
+        System.out.println("Elements after insertion at begining ");
+        list.add_Element_At_Begining(30);
+        list.element_Display();
+        System.out.println("Elements after insertion at begining ");
+        list.add_Element_At_Begining(40);
+        list.element_Display();
+        System.out.println("Elements after insertion at begining ");
+        list.add_Element_At_Begining(50);
+        list.element_Display();
+
+
+
+    }
+}
